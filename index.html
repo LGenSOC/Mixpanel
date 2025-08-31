@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mixpanel Test</title>
-  <script src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"></script>
-  <script>
-    mixpanel.init("YOUR_REAL_PROJECT_TOKEN", {
-      debug: true,
-      track_pageview: true,
-      persistence: "localStorage"
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mixpanel Quickstart</title>
+  <script type="module">
+    // Initialize Mixpanel with your project token and enable autocapture
+    import mixpanel from 'https://cdn.jsdelivr.net/npm/mixpanel-browser@2.60.0/dist/mixpanel.min.js';
+
+    mixpanel.init('e331a5a072bc3aebe9897f0330a4dad1', {
+      autocapture: true,
     });
 
-    // Test event on page load
-    mixpanel.track("Page Loaded Test");
+    // Identify the user with a unique ID (e.g., from your authentication system)
+    mixpanel.identify('user-12345');
+
+    // Set user properties (optional)
+    mixpanel.people.set({
+      $first_name: 'John',
+      $last_name: 'Doe',
+      $email: 'john.doe@example.com',
+    });
+
+    // Track a custom event when the button is clicked
+    document.getElementById('trackEventBtn').addEventListener('click', () => {
+      mixpanel.track('Button Clicked', {
+        button_name: 'trackEventBtn',
+        page: window.location.pathname,
+      });
+    });
   </script>
 </head>
 <body>
-  <h1>Mixpanel Tracking Test</h1>
-  <button onclick="mixpanel.track('Button Clicked Test')">Click Me</button>
+  <h1>Welcome to Mixpanel Quickstart</h1>
+  <p>This page demonstrates how to track a user and events using Mixpanel.</p>
+  <button id="trackEventBtn">Click Me to Track Event</button>
 </body>
 </html>
+
 
 
 
