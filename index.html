@@ -55,8 +55,7 @@
 
     <!-- JavaScript for Mixpanel tracking -->
     <script>
-        // NOTE: Replace "YOUR_TOKEN" with your actual Mixpanel project token.
-        // This is the Mixpanel initialization code you provided.
+        // Initialize Mixpanel with your token
         mixpanel.init("e331a5a072bc3aebe9897f0330a4dad1", {
             debug: true,
             track_pageview: true,
@@ -67,10 +66,19 @@
         function signUpUser() {
             const username = document.getElementById('username').value;
             if (username) {
-                // Identify the user with the Mixpanel user ID
+                // Identify the user
                 mixpanel.identify(username);
-                console.log(`Mixpanel: Identified user as "${username}"`);
-                alert(`User "${username}" signed up and identified!`);
+
+                // Set user profile properties in Mixpanel
+                mixpanel.people.set({
+                    '$name': username,
+                    '$email': username + '@example.com', // Example email logic
+                    'plan': 'Premium',
+                    'signup_date': new Date().toISOString()
+                });
+
+                console.log(`Mixpanel: Identified and set profile for "${username}"`);
+                alert(`User "${username}" signed up, identified, and profile updated!`);
             } else {
                 alert("Please enter a username.");
             }
@@ -78,7 +86,6 @@
 
         // Function to track a generic event
         function trackEvent(eventName) {
-            // Track the event with some example properties
             mixpanel.track(eventName, {
                 'product_name': 'Product 1',
                 'product_id': 'PROD_001',
@@ -90,3 +97,4 @@
     </script>
 </body>
 </html>
+
