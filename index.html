@@ -1,100 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Tracking Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="text/javascript">
-      (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
-    </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mixpanel Tracking Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
 
-    <!-- Main Container -->
-    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl flex flex-col md:flex-row gap-8">
+  <!-- Main Container -->
+  <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl flex flex-col md:flex-row gap-8">
 
-        <!-- Left Section: Sign Up Form -->
-        <div class="flex-1 bg-gray-50 p-6 rounded-xl shadow-inner">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Sign Up</h2>
-            <div class="space-y-4">
-                <div>
-                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" id="username" name="username" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                </div>
-                <button onclick="signUpUser()" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors shadow-md transform hover:scale-105 duration-200">
-                    Sign Up
-                </button>
-            </div>
+    <!-- Left Section: Sign Up Form -->
+    <div class="flex-1 bg-gray-50 p-6 rounded-xl shadow-inner">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Sign Up</h2>
+      <div class="space-y-4">
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+          <input type="text" id="username" name="username"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
         </div>
-
-        <!-- Right Section: Product Tracking Buttons -->
-        <div class="flex-1 bg-gray-50 p-6 rounded-xl shadow-inner">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Track Product Events</h2>
-            <div class="grid grid-cols-1 gap-4">
-                <button onclick="trackEvent('Product 1 Viewed')" class="bg-indigo-500 text-white py-3 px-6 rounded-lg hover:bg-indigo-600 transition-colors shadow-md transform hover:scale-105 duration-200">
-                    Product 1 View
-                </button>
-                <button onclick="trackEvent('Product 1 Added to Cart')" class="bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-colors shadow-md transform hover:scale-105 duration-200">
-                    Product 1 Added to Cart
-                </button>
-                <button onclick="trackEvent('Product 1 Payment')" class="bg-yellow-500 text-white py-3 px-6 rounded-lg hover:bg-yellow-600 transition-colors shadow-md transform hover:scale-105 duration-200">
-                    Product 1 Payment
-                </button>
-                <button onclick="trackEvent('Product 1 Transaction Completed')" class="bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-600 transition-colors shadow-md transform hover:scale-105 duration-200">
-                    Product 1 Transaction Completed
-                </button>
-            </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" id="email" name="email"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
         </div>
+        <button onclick="signUpUser()" 
+          class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors shadow-md transform hover:scale-105 duration-200">
+          Sign Up
+        </button>
+      </div>
     </div>
 
-    <!-- JavaScript for Mixpanel tracking -->
-    <script>
-        // Initialize Mixpanel with your token
-        mixpanel.init("e331a5a072bc3aebe9897f0330a4dad1", {
-            debug: true,
-            track_pageview: true,
-            persistence: "localStorage",
+    <!-- Right Section: Product Tracking Buttons -->
+    <div class="flex-1 bg-gray-50 p-6 rounded-xl shadow-inner">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Track Product Events</h2>
+      <div class="grid grid-cols-1 gap-4">
+        <button onclick="trackEvent('Product 1 Viewed')" 
+          class="bg-indigo-500 text-white py-3 px-6 rounded-lg hover:bg-indigo-600 transition-colors shadow-md transform hover:scale-105 duration-200">
+          Product 1 View
+        </button>
+        <button onclick="trackEvent('Product 1 Added to Cart')" 
+          class="bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-colors shadow-md transform hover:scale-105 duration-200">
+          Product 1 Added to Cart
+        </button>
+        <button onclick="trackEvent('Product 1 Payment')" 
+          class="bg-yellow-500 text-white py-3 px-6 rounded-lg hover:bg-yellow-600 transition-colors shadow-md transform hover:scale-105 duration-200">
+          Product 1 Payment
+        </button>
+        <button onclick="trackEvent('Product 1 Transaction Completed')" 
+          class="bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-600 transition-colors shadow-md transform hover:scale-105 duration-200">
+          Product 1 Transaction Completed
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for Mixpanel tracking -->
+  <script>
+    // 🔑 Replace this with your real Mixpanel project token
+    mixpanel.init("e331a5a072bc3aebe9897f0330a4dad1", {
+      debug: true,
+      track_pageview: true,
+      persistence: "localStorage"
+    });
+
+    // Function to handle user sign up
+    function signUpUser() {
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+
+      if (username && email) {
+        // Identify the user with a unique ID (username in this demo)
+        mixpanel.identify(username);
+
+        // Set user profile info
+        mixpanel.people.set({
+          '$name': username,
+          '$email': email,
+          'plan': 'Premium',
+          'signup_date': new Date().toISOString()
         });
 
-        // Function to handle user sign up
-        function signUpUser() {
-            const username = document.getElementById('username').value;
-            if (username) {
-                // Identify the user
-                mixpanel.identify(username);
+        alert(`User "${username}" signed up, identified, and profile updated!`);
+      } else {
+        alert("Please enter a username and email.");
+      }
+    }
 
-                // Set user profile properties in Mixpanel
-                mixpanel.people.set({
-                    '$name': username,
-                    '$email': username + '@example.com', // Example email logic
-                    'plan': 'Premium',
-                    'signup_date': new Date().toISOString()
-                });
-
-                console.log(`Mixpanel: Identified and set profile for "${username}"`);
-                alert(`User "${username}" signed up, identified, and profile updated!`);
-            } else {
-                alert("Please enter a username.");
-            }
-        }
-
-        // Function to track a generic event
-        function trackEvent(eventName) {
-            mixpanel.track(eventName, {
-                'product_name': 'Product 1',
-                'product_id': 'PROD_001',
-                'category': 'Example'
-            });
-            console.log(`Mixpanel: Tracked event "${eventName}"`);
-            alert(`Event "${eventName}" has been tracked!`);
-        }
-    </script>
+    // Function to track a generic product event
+    function trackEvent(eventName) {
+      mixpanel.track(eventName, {
+        'product_name': 'Product 1',
+        'product_id': 'PROD_001',
+        'category': 'Example'
+      });
+      console.log(`Mixpanel: Tracked event "${eventName}"`);
+      alert(`Event "${eventName}" has been tracked!`);
+    }
+  </script>
 </body>
 </html>
+
 
